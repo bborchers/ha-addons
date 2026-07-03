@@ -6,4 +6,4 @@
 ![Architectures](https://img.shields.io/badge/architectures-aarch64%20%7C%20amd64-blue)
 ![Maintenance](https://img.shields.io/maintenance/yes/2026)
 
-Siehe [DOCS.md](DOCS.md) für Installation und Konfiguration. Quellcode und Issues: [ha-addons-grafana](https://github.com/bborchers/ha-addons-grafana).
+See [DOCS.md](DOCS.md) for installation and configuration. Source code and issues: [ha-addons-grafana](https://github.com/bborchers/ha-addons-grafana).

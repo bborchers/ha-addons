@@ -3,7 +3,7 @@
   "extends": ["config:recommended"],
   "timezone": "Europe/Berlin",
   "dependencyDashboard": true,
-  "dependencyDashboardTitle": "Renovate: offene Updates",
+  "dependencyDashboardTitle": "Renovate: open updates",
   "dependencyDashboardApproval": true,
   "semanticCommits": "enabled"
 }

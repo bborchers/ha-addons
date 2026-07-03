@@ -12,23 +12,23 @@ jobs:
         with:
           token: ${{ secrets.REPO_TOKEN }}
 
-      - name: Konfiguration lesen
+      - name: Read configuration
         id: payload
         run: |
           echo "slug=${{ github.event.client_payload.slug }}" >> "$GITHUB_OUTPUT"
           echo "version=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
           echo "build_repo=ha-addons-${{ github.event.client_payload.slug }}" >> "$GITHUB_OUTPUT"
 
-      - name: Branch anlegen
+      - name: Create branch
         run: git checkout -b "release/${{ steps.payload.outputs.slug }}"
 
-      - name: Version in config.yaml aktualisieren
+      - name: Update version in config.yaml
         run: |
           SLUG="${{ steps.payload.outputs.slug }}"
           VERSION="${{ steps.payload.outputs.version }}"
           sed -i -E "s/^version: .*/version: \"${VERSION}\"/" "${SLUG}/config.yaml"
 
-      - name: DOCS.md, CHANGELOG.md, icon.png, logo.png vom Build-Repo übernehmen
+      - name: Pull DOCS.md, CHANGELOG.md, icon.png, logo.png from the build repo
         run: |
           SLUG="${{ steps.payload.outputs.slug }}"
           REPO="${{ github.repository_owner }}/${{ steps.payload.outputs.build_repo }}"
@@ -37,7 +37,7 @@ jobs:
               "https://raw.githubusercontent.com/${REPO}/main/${SLUG}/${FILE}"
           done
 
-      - name: Badges in README.md aus Build-Repo-Daten generieren
+      - name: Generate badges in README.md from build repo data
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -71,10 +71,10 @@ jobs:
             echo "![Architectures](https://img.shields.io/badge/architectures-${ARCHES}-blue)"
             echo "![Maintenance](https://img.shields.io/maintenance/${MAINTAINED}/${YEAR})"
             echo
-            echo "Siehe [DOCS.md](DOCS.md) für Installation und Konfiguration. Quellcode und Issues: [${BUILD_REPO}](https://github.com/${REPO})."
+            echo "See [DOCS.md](DOCS.md) for installation and configuration. Source code and issues: [${BUILD_REPO}](https://github.com/${REPO})."
           } > "${SLUG}/README.md"
 
-      - name: Version und Release-Datum in Root-README-Tabelle aktualisieren
+      - name: Update version and release date in root README table
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -94,7 +94,7 @@ jobs:
           ' OFS='|' README.md > README.md.tmp
           mv README.md.tmp README.md
 
-      - name: Änderungen committen und pushen
+      - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -102,13 +102,13 @@ jobs:
           git commit -m "chore(${{ steps.payload.outputs.slug }}): release v${{ steps.payload.outputs.version }}"
           git push origin "release/${{ steps.payload.outputs.slug }}" --force
 
-      - name: Pull Request erstellen und mergen
+      - name: Create and merge pull request
         env:
           GH_TOKEN: ${{ secrets.REPO_TOKEN }}
         run: |
           PR_URL=$(gh pr create \
             --title "chore(${{ steps.payload.outputs.slug }}): release v${{ steps.payload.outputs.version }}" \
-            --body "Automatisches Update von \`${{ steps.payload.outputs.slug }}/config.yaml\` auf Version \`${{ steps.payload.outputs.version }}\`, ausgelöst durch ein Release in [${{ steps.payload.outputs.build_repo }}](https://github.com/${{ github.repository_owner }}/${{ steps.payload.outputs.build_repo }})." \
+            --body "Automatic update of \`${{ steps.payload.outputs.slug }}/config.yaml\` to version \`${{ steps.payload.outputs.version }}\`, triggered by a release in [${{ steps.payload.outputs.build_repo }}](https://github.com/${{ github.repository_owner }}/${{ steps.payload.outputs.build_repo }})." \
             --base main \
             --head "release/${{ steps.payload.outputs.slug }}")
           gh pr merge --merge --auto "$PR_URL"
