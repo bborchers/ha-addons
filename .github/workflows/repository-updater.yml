@@ -74,11 +74,31 @@ jobs:
             echo "Siehe [DOCS.md](DOCS.md) für Installation und Konfiguration. Quellcode und Issues: [${BUILD_REPO}](https://github.com/${REPO})."
           } > "${SLUG}/README.md"
 
+      - name: Version und Release-Datum in Root-README-Tabelle aktualisieren
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SLUG="${{ steps.payload.outputs.slug }}"
+          BUILD_REPO="${{ steps.payload.outputs.build_repo }}"
+          REPO="${{ github.repository_owner }}/${BUILD_REPO}"
+
+          VERSION_BADGE="[![Version](https://img.shields.io/github/v/release/${REPO})](https://github.com/${REPO}/releases/latest)"
+          RELEASE_DATE=$(gh api "repos/${REPO}/releases/latest" --jq '.published_at' | cut -dT -f1)
+
+          awk -F'|' -v slug="$SLUG" -v version="$VERSION_BADGE" -v date="$RELEASE_DATE" '
+            $2 ~ ("\\(" slug "/\\)") {
+              $4 = " " version " "
+              $5 = " " date " "
+            }
+            { print }
+          ' OFS='|' README.md > README.md.tmp
+          mv README.md.tmp README.md
+
       - name: Änderungen committen und pushen
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "${{ steps.payload.outputs.slug }}"
+          git add "${{ steps.payload.outputs.slug }}" README.md
           git commit -m "chore(${{ steps.payload.outputs.slug }}): release v${{ steps.payload.outputs.version }}"
           git push origin "release/${{ steps.payload.outputs.slug }}" --force
 
