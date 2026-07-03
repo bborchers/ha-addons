@@ -1,0 +1,26 @@
+name: "Grafana"
+version: "0.1.0"
+slug: "grafana"
+description: "Grafana Analytics- und Monitoring-Plattform"
+url: "https://github.com/<dein-github-user>/<dein-repo>/tree/main/grafana"
+arch:
+  - aarch64
+  - amd64
+  - armv7
+init: false
+startup: application
+boot: auto
+ports:
+  3000/tcp: 3000
+ports_description:
+  3000/tcp: "Grafana Web UI"
+options:
+  log_level: info
+  admin_user: "admin"
+  admin_password: "admin"
+  anonymous_access: false
+schema:
+  log_level: list(debug|info|warn|error|critical)
+  admin_user: str
+  admin_password: password
+  anonymous_access: bool

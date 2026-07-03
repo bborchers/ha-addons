@@ -4,6 +4,7 @@
 
 | Addon | Beschreibung |
 |---|---|
+| [Grafana](grafana/) | Grafana Analytics- und Monitoring-Plattform |
 
 ## Installation als Repository
 
