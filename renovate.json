@@ -5,46 +5,5 @@
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate: offene Updates",
   "dependencyDashboardApproval": true,
-  "semanticCommits": "enabled",
-  "customManagers": [
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/(^|/)build\\.yaml$/"],
-      "matchStrings": [
-        "GRAFANA_VERSION:\\s*\"(?<currentValue>[^\"]+)\""
-      ],
-      "depNameTemplate": "grafana/grafana",
-      "datasourceTemplate": "github-releases",
-      "extractVersionTemplate": "^v(?<version>.*)$"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/(^|/)build\\.yaml$/"],
-      "matchStrings": [
-        "ghcr\\.io/hassio-addons/base/(?<depName>[a-zA-Z0-9]+):(?<currentValue>[^\\s\"]+)"
-      ],
-      "datasourceTemplate": "docker",
-      "packageNameTemplate": "ghcr.io/hassio-addons/base/{{{depName}}}"
-    }
-  ],
-  "packageRules": [
-    {
-      "matchDatasources": ["github-releases"],
-      "matchPackageNames": ["grafana/grafana"],
-      "groupName": "Grafana",
-      "minimumReleaseAge": "3 days",
-      "automerge": true,
-      "automergeType": "pr",
-      "platformAutomerge": true
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["ghcr.io/hassio-addons/base/*"],
-      "groupName": "hassio-addons base image",
-      "minimumReleaseAge": "3 days",
-      "automerge": true,
-      "automergeType": "pr",
-      "platformAutomerge": true
-    }
-  ]
+  "semanticCommits": "enabled"
 }
