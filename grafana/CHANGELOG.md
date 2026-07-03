@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4
+
+- Changelog für 0.1.3 nachgetragen (keine funktionale Änderung)
+
 ## 0.1.3
 
 - Changelog für 0.1.2 nachgetragen (keine funktionale Änderung)
