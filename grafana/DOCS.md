@@ -43,4 +43,4 @@ Grafana-Datenbank, Logs und Plugins werden im persistenten Addon-Datenverzeichni
 
 ## Support
 
-Bei Problemen bitte ein Issue im Repository öffnen.
+Bei Problemen bitte ein Issue im [Build-Repository](https://github.com/bborchers/ha-addons-grafana) öffnen.
