@@ -5,6 +5,7 @@
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate: offene Updates",
   "dependencyDashboardApproval": true,
+  "semanticCommits": "enabled",
   "customManagers": [
     {
       "customType": "regex",
