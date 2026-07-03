@@ -37,6 +37,43 @@ jobs:
               "https://raw.githubusercontent.com/${REPO}/main/${SLUG}/${FILE}"
           done
 
+      - name: Badges in README.md aus Build-Repo-Daten generieren
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SLUG="${{ steps.payload.outputs.slug }}"
+          NAME="${{ steps.payload.outputs.slug }}"
+          BUILD_REPO="${{ steps.payload.outputs.build_repo }}"
+          REPO="${{ github.repository_owner }}/${BUILD_REPO}"
+
+          curl -sSfL -o /tmp/build-config.yaml \
+            "https://raw.githubusercontent.com/${REPO}/main/${SLUG}/config.yaml"
+          ARCHES=$(awk '/^arch:/{flag=1;next}/^[a-zA-Z]/{flag=0}flag{gsub(/^[ -]+/,"");print}' /tmp/build-config.yaml \
+            | paste -sd, - | sed 's/,/%20%7C%20/g')
+
+          ARCHIVED=$(gh api "repos/${REPO}" --jq '.archived')
+          if [ "$ARCHIVED" = "true" ]; then
+            STATUS_BADGE="Archived-red"
+            MAINTAINED="no"
+          else
+            STATUS_BADGE="Active-brightgreen"
+            MAINTAINED="yes"
+          fi
+          YEAR=$(date +%Y)
+          TITLE="${NAME^}"
+
+          {
+            echo "# ${TITLE}"
+            echo
+            echo "[![Release](https://img.shields.io/github/v/release/${REPO})](https://github.com/${REPO}/releases/latest)"
+            echo "![Project Status](https://img.shields.io/badge/Project%20Status-${STATUS_BADGE})"
+            echo "[![License](https://img.shields.io/github/license/${REPO})](https://github.com/${REPO}/blob/main/LICENSE)"
+            echo "![Architectures](https://img.shields.io/badge/architectures-${ARCHES}-blue)"
+            echo "![Maintenance](https://img.shields.io/maintenance/${MAINTAINED}/${YEAR})"
+            echo
+            echo "Siehe [DOCS.md](DOCS.md) für Installation und Konfiguration. Quellcode und Issues: [${BUILD_REPO}](https://github.com/${REPO})."
+          } > "${SLUG}/README.md"
+
       - name: Änderungen committen und pushen
         run: |
           git config user.name "github-actions[bot]"
