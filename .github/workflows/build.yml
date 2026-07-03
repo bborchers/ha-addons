@@ -38,7 +38,7 @@ jobs:
     strategy:
       matrix:
         addon: ${{ fromJson(needs.find-changed-addons.outputs.addons) }}
-        arch: [aarch64, amd64, armv7]
+        arch: [aarch64, amd64]
     steps:
       - uses: actions/checkout@v4
 
@@ -63,8 +63,7 @@ jobs:
             --target /data/${{ matrix.addon }} \
             --image "${{ github.repository_owner }}/{arch}-addon-$(basename ${{ matrix.addon }})" \
             --docker-hub "ghcr.io/${{ github.repository_owner }}" \
-            --addon-tag "${{ steps.version.outputs.version }}" \
-            --version latest
+            --version "${{ steps.version.outputs.version }}"
         env:
           BUILDER_LOGIN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           BUILDER_LOGIN_USERNAME: ${{ github.actor }}

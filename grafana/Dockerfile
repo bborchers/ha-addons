@@ -15,7 +15,6 @@ RUN \
     && case "${BUILD_ARCH}" in \
         aarch64) GRAFANA_ARCH="arm64" ;; \
         amd64) GRAFANA_ARCH="amd64" ;; \
-        armv7) GRAFANA_ARCH="armv7" ;; \
         *) echo "Nicht unterstützte Architektur: ${BUILD_ARCH}" >&2 && exit 1 ;; \
     esac \
     && curl -sSfL -o /tmp/grafana.tar.gz \
