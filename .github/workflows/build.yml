@@ -49,6 +49,9 @@ jobs:
     needs: find-changed-addons
     if: needs.find-changed-addons.outputs.addons != '[]'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     strategy:
       matrix:
         addon: ${{ fromJson(needs.find-changed-addons.outputs.addons) }}
