@@ -54,4 +54,4 @@ jobs:
             --body "Automatisches Update von \`${{ steps.payload.outputs.slug }}/config.yaml\` auf Version \`${{ steps.payload.outputs.version }}\`, ausgelöst durch ein Release in [${{ steps.payload.outputs.build_repo }}](https://github.com/${{ github.repository_owner }}/${{ steps.payload.outputs.build_repo }})." \
             --base main \
             --head "release/${{ steps.payload.outputs.slug }}")
-          gh pr merge --merge "$PR_URL"
+          gh pr merge --merge --auto "$PR_URL"
