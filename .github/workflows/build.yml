@@ -8,6 +8,12 @@ on:
       - "**/Dockerfile"
       - "**/build.yaml"
       - "**/run.sh"
+  workflow_dispatch:
+    inputs:
+      addon:
+        description: "Addon-Verzeichnis (leer = alle Addons bauen)"
+        required: false
+        type: string
 
 jobs:
   find-changed-addons:
@@ -19,16 +25,24 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Geänderte Addon-Verzeichnisse ermitteln
+      - name: Addon-Verzeichnisse ermitteln
         id: list
         run: |
-          CHANGED=$(git diff --name-only HEAD^ HEAD | grep -oE '^[^/]+' | sort -u)
-          ADDONS="[]"
-          for dir in $CHANGED; do
-            if [ -f "$dir/config.yaml" ]; then
-              ADDONS=$(echo "$ADDONS" | jq -c --arg d "$dir" '. + [$d]')
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ -n "${{ inputs.addon }}" ]; then
+              ADDONS=$(jq -c -n --arg d "${{ inputs.addon }}" '[$d]')
+            else
+              ADDONS=$(find . -maxdepth 2 -name "config.yaml" -exec dirname {} \; | sed 's|^\./||' | jq -R -s -c 'split("\n")[:-1]')
             fi
-          done
+          else
+            CHANGED=$(git diff --name-only HEAD^ HEAD | grep -oE '^[^/]+' | sort -u)
+            ADDONS="[]"
+            for dir in $CHANGED; do
+              if [ -f "$dir/config.yaml" ]; then
+                ADDONS=$(echo "$ADDONS" | jq -c --arg d "$dir" '. + [$d]')
+              fi
+            done
+          fi
           echo "addons=${ADDONS}" >> "$GITHUB_OUTPUT"
 
   build:
