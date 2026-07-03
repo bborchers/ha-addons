@@ -1,0 +1,57 @@
+name: Repository Updater
+
+on:
+  repository_dispatch:
+    types: [addon-release]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.REPO_TOKEN }}
+
+      - name: Konfiguration lesen
+        id: payload
+        run: |
+          echo "slug=${{ github.event.client_payload.slug }}" >> "$GITHUB_OUTPUT"
+          echo "version=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
+          echo "build_repo=ha-addons-${{ github.event.client_payload.slug }}" >> "$GITHUB_OUTPUT"
+
+      - name: Branch anlegen
+        run: git checkout -b "release/${{ steps.payload.outputs.slug }}"
+
+      - name: Version in config.yaml aktualisieren
+        run: |
+          SLUG="${{ steps.payload.outputs.slug }}"
+          VERSION="${{ steps.payload.outputs.version }}"
+          sed -i -E "s/^version: .*/version: \"${VERSION}\"/" "${SLUG}/config.yaml"
+
+      - name: DOCS.md, CHANGELOG.md, icon.png, logo.png vom Build-Repo übernehmen
+        run: |
+          SLUG="${{ steps.payload.outputs.slug }}"
+          REPO="${{ github.repository_owner }}/${{ steps.payload.outputs.build_repo }}"
+          for FILE in DOCS.md CHANGELOG.md icon.png logo.png; do
+            curl -sSfL -o "${SLUG}/${FILE}" \
+              "https://raw.githubusercontent.com/${REPO}/main/${SLUG}/${FILE}"
+          done
+
+      - name: Änderungen committen und pushen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ steps.payload.outputs.slug }}"
+          git commit -m "chore(${{ steps.payload.outputs.slug }}): release v${{ steps.payload.outputs.version }}"
+          git push origin "release/${{ steps.payload.outputs.slug }}" --force
+
+      - name: Pull Request erstellen und mergen
+        env:
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
+        run: |
+          PR_URL=$(gh pr create \
+            --title "chore(${{ steps.payload.outputs.slug }}): release v${{ steps.payload.outputs.version }}" \
+            --body "Automatisches Update von \`${{ steps.payload.outputs.slug }}/config.yaml\` auf Version \`${{ steps.payload.outputs.version }}\`, ausgelöst durch ein Release in [${{ steps.payload.outputs.build_repo }}](https://github.com/${{ github.repository_owner }}/${{ steps.payload.outputs.build_repo }})." \
+            --base main \
+            --head "release/${{ steps.payload.outputs.slug }}")
+          gh pr merge --merge "$PR_URL"

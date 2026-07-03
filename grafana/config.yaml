@@ -2,7 +2,8 @@ name: "Grafana"
 version: "0.1.1"
 slug: "grafana"
 description: "Grafana Analytics- und Monitoring-Plattform"
-url: "https://github.com/<dein-github-user>/<dein-repo>/tree/main/grafana"
+url: "https://github.com/bborchers/ha-addons-grafana/tree/main/grafana"
+image: "ghcr.io/bborchers/grafana/{arch}"
 arch:
   - aarch64
   - amd64
