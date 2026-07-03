@@ -3,7 +3,7 @@ version: "0.1.2"
 slug: "grafana"
 description: "Grafana Analytics- und Monitoring-Plattform"
 url: "https://github.com/bborchers/ha-addons-grafana/tree/main/grafana"
-image: "ghcr.io/bborchers/grafana/{arch}"
+image: "ghcr.io/bborchers/ha-addons-grafana/{arch}"
 arch:
   - aarch64
   - amd64
