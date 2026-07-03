@@ -1,0 +1,70 @@
+name: Build Addons
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/config.yaml"
+      - "**/Dockerfile"
+      - "**/build.yaml"
+      - "**/run.sh"
+
+jobs:
+  find-changed-addons:
+    runs-on: ubuntu-latest
+    outputs:
+      addons: ${{ steps.list.outputs.addons }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Geänderte Addon-Verzeichnisse ermitteln
+        id: list
+        run: |
+          CHANGED=$(git diff --name-only HEAD^ HEAD | grep -oE '^[^/]+' | sort -u)
+          ADDONS="[]"
+          for dir in $CHANGED; do
+            if [ -f "$dir/config.yaml" ]; then
+              ADDONS=$(echo "$ADDONS" | jq -c --arg d "$dir" '. + [$d]')
+            fi
+          done
+          echo "addons=${ADDONS}" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: find-changed-addons
+    if: needs.find-changed-addons.outputs.addons != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        addon: ${{ fromJson(needs.find-changed-addons.outputs.addons) }}
+        arch: [aarch64, amd64, armv7]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login bei GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Version aus config.yaml lesen
+        id: version
+        run: |
+          VERSION=$(grep '^version:' "${{ matrix.addon }}/config.yaml" | sed -E 's/version: *"?([^"]+)"?/\1/')
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Build & Push mit Home Assistant Builder
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --${{ matrix.arch }} \
+            --target /data/${{ matrix.addon }} \
+            --image "${{ github.repository_owner }}/{arch}-addon-$(basename ${{ matrix.addon }})" \
+            --docker-hub "ghcr.io/${{ github.repository_owner }}" \
+            --addon-tag "${{ steps.version.outputs.version }}" \
+            --version latest
+        env:
+          BUILDER_LOGIN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          BUILDER_LOGIN_USERNAME: ${{ github.actor }}
