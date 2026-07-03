@@ -2,22 +2,22 @@
 
 ## 0.1.4
 
-- Changelog für 0.1.3 nachgetragen (keine funktionale Änderung)
+- Added missing changelog entry for 0.1.3 (no functional change)
 
 ## 0.1.3
 
-- Changelog für 0.1.2 nachgetragen (keine funktionale Änderung)
+- Added missing changelog entry for 0.1.2 (no functional change)
 
 ## 0.1.2
 
-- Support-Link in DOCS.md zeigt jetzt aufs Build-Repo
-- GHCR-Image umbenannt zu `ha-addons-grafana/{arch}` (statt `grafana/{arch}`)
+- Support link in DOCS.md now points to the build repo
+- GHCR image renamed to `ha-addons-grafana/{arch}` (was `grafana/{arch}`)
 
 ## 0.1.1
 
-- `armv7` entfernt (von Home Assistant seit 2025.12 nicht mehr unterstützt, `home-assistant/builder` kann diese Architektur nicht mehr bauen)
-- `startup`/`boot` aus `config.yaml` entfernt (waren nur Default-Werte, wurden vom Addon-Linter als Fehler markiert)
+- Removed `armv7` (no longer supported by Home Assistant since 2025.12, `home-assistant/builder` can no longer build this architecture)
+- Removed `startup`/`boot` from `config.yaml` (were only default values, flagged as errors by the add-on linter)
 
 ## 0.1.0
 
-- Initiales Release, basierend auf Grafana OSS 13.1.0
+- Initial release, based on Grafana OSS 13.1.0

@@ -7,33 +7,33 @@
 ![Maintenance](https://img.shields.io/maintenance/yes/2026)
 ![Commits](https://img.shields.io/github/commit-activity/t/bborchers/ha-addons)
 
-## Addons in diesem Repository
+## Add-ons in this repository
 
-Dies ist das **zentrale Repository**, das in Home Assistant hinzugefügt wird. Es enthält pro Addon nur eine schlanke `config.yaml` mit Verweis auf ein vorgebautes Image auf GHCR — kein Build-Code. Der eigentliche Quellcode (Dockerfile, build.yaml, run.sh) liegt in einem eigenen Build-Repo pro Addon.
+This is the **central repository** added to Home Assistant. For each add-on it contains only a lean `config.yaml` pointing to a pre-built image on GHCR — no build code. The actual source code (Dockerfile, build.yaml, run.sh) lives in a dedicated build repo per add-on.
 
-| Addon | Beschreibung | Version | Release-Datum | Build-Repo |
+| Add-on | Description | Version | Release Date | Build Repo |
 |---|---|---|---|---|
-| [Grafana](grafana/) | Grafana Analytics- und Monitoring-Plattform | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-grafana)](https://github.com/bborchers/ha-addons-grafana/releases/latest) | 2026-07-03 | [ha-addons-grafana](https://github.com/bborchers/ha-addons-grafana) |
+| [Grafana](grafana/) | Grafana analytics and monitoring platform | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-grafana)](https://github.com/bborchers/ha-addons-grafana/releases/latest) | 2026-07-03 | [ha-addons-grafana](https://github.com/bborchers/ha-addons-grafana) |
 
-## Installation als Repository
+## Installing as a repository
 
-1. Home Assistant → Einstellungen → Add-ons → Add-on Store
-2. Oben rechts (⋮) → Repositories
-3. URL dieses Repos hinzufügen: `https://github.com/bborchers/ha-addons`
+1. Home Assistant → Settings → Add-ons → Add-on Store
+2. Top right (⋮) → Repositories
+3. Add this repo's URL: `https://github.com/bborchers/ha-addons`
 
-## Wie ein Addon-Update hierher kommt
+## How an add-on update gets here
 
-1. Im Build-Repo (z.B. `ha-addons-grafana`) wird ein PR gemergt (mit Label `major`/`minor`/`patch`).
-2. Release Drafter aktualisiert automatisch einen Draft-Release mit der nächsten Version.
-3. Wird der Draft veröffentlicht, baut das Build-Repo das Multi-Arch-Image und pusht es nach `ghcr.io/bborchers/<slug>`.
-4. Das Build-Repo löst per `repository_dispatch` einen Workflow hier aus (`.github/workflows/repository-updater.yml`), der `<slug>/config.yaml` automatisch auf die neue Version aktualisiert (per PR + Auto-Merge).
+1. A PR is merged in the build repo (e.g. `ha-addons-grafana`) with label `major`/`minor`/`patch`.
+2. Release Drafter automatically updates a draft release with the next version.
+3. When the draft is published, the build repo builds the multi-arch image and pushes it to `ghcr.io/bborchers/<slug>`.
+4. The build repo triggers a workflow here via `repository_dispatch` (`.github/workflows/repository-updater.yml`), which automatically updates `<slug>/config.yaml` to the new version (via PR + auto-merge).
 
-## Neues Addon hinzufügen (für Agenten/Automatisierung)
+## Adding a new add-on (for agents/automation)
 
-Ein neues Addon besteht aus drei Teilen:
+A new add-on consists of three parts:
 
-1. **Neues Build-Repo** `ha-addons-<slug>` (analog zu `ha-addons-grafana`): enthält `<slug>/{config.yaml (version: dev), Dockerfile, build.yaml, run.sh, DOCS.md, CHANGELOG.md, icon.png, logo.png}`, plus `.github/workflows/{lint,commitlint,release-drafter,deploy}.yml` als dünne Wrapper um die reusable Workflows aus [ha-addons-workflow](https://github.com/bborchers/ha-addons-workflow), eigene `renovate.json`/`commitlint.config.cjs`/`LICENSE`, Labels `major`/`minor`/`patch`, Branch Protection (PR-Pflicht + Required Checks `commitlint / commitlint` + `lint / lint` + `enforce_admins`), Secret `DISPATCH_TOKEN` (gleiches PAT-Muster wie bei `ha-addons-grafana`, Scope nur auf dieses zentrale Repo).
-2. **Eintrag hier** in `ha-addons`: neues Verzeichnis `<slug>/` mit schlanker `config.yaml` (`version` + `image: "ghcr.io/bborchers/<slug>/{arch}"`), `DOCS.md`, `CHANGELOG.md`, `icon.png`, `logo.png`. Diese Dateien werden ab dem ersten Release automatisch vom `repository-updater`-Workflow synchron gehalten.
-3. **Tabellenzeile** in diesem README ergänzen (Addon, Beschreibung, Version-Badge `https://img.shields.io/github/v/release/bborchers/ha-addons-<slug>`, Release-Datum, Build-Repo-Link). Version und Release-Datum werden ab dann bei jedem `repository_dispatch` automatisch vom `repository-updater`-Workflow aktualisiert.
+1. **New build repo** `ha-addons-<slug>` (analogous to `ha-addons-grafana`): contains `<slug>/{config.yaml (version: dev), Dockerfile, build.yaml, run.sh, DOCS.md, CHANGELOG.md, icon.png, logo.png}`, plus `.github/workflows/{lint,commitlint,release-drafter,deploy}.yml` as thin wrappers around the reusable workflows from [ha-addons-workflow](https://github.com/bborchers/ha-addons-workflow), its own `renovate.json`/`commitlint.config.cjs`/`LICENSE`, labels `major`/`minor`/`patch`, branch protection (PR required + required checks `commitlint / commitlint` + `lint / lint` + `enforce_admins`), secret `DISPATCH_TOKEN` (same PAT pattern as `ha-addons-grafana`, scoped only to this central repo).
+2. **An entry here** in `ha-addons`: a new `<slug>/` directory with a lean `config.yaml` (`version` + `image: "ghcr.io/bborchers/<slug>/{arch}"`), `DOCS.md`, `CHANGELOG.md`, `icon.png`, `logo.png`. From the first release onward, these files are kept in sync automatically by the `repository-updater` workflow.
+3. **A table row** added to this README (add-on, description, version badge `https://img.shields.io/github/v/release/bborchers/ha-addons-<slug>`, release date, build repo link). From then on, the version and release date are automatically updated on every `repository_dispatch` by the `repository-updater` workflow.
 
-`.github/workflows/lint.yml` validiert jede `config.yaml` hier automatisch gegen das HA-Schema.
+`.github/workflows/lint.yml` automatically validates every `config.yaml` here against the HA schema.
