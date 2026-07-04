@@ -12,13 +12,32 @@ ports:
   3000/tcp: 3000
 ports_description:
   3000/tcp: "Grafana Web UI"
+map:
+  - ssl:ro
 options:
   log_level: info
   admin_user: "admin"
   admin_password: "admin"
   anonymous_access: false
+  ssl: false
+  certfile: fullchain.pem
+  keyfile: privkey.pem
+  smtp_enabled: false
 schema:
   log_level: list(debug|info|warn|error|critical)
   admin_user: str
   admin_password: password
   anonymous_access: bool
+  root_url: str?
+  domain: str?
+  ssl: bool
+  certfile: str
+  keyfile: str
+  smtp_enabled: bool
+  smtp_host: str?
+  smtp_user: str?
+  smtp_password: password?
+  smtp_from_address: str?
+  smtp_from_name: str?
+  smtp_skip_verify: bool?
+  smtp_starttls_policy: list(OpportunisticStartTLS|MandatoryStartTLS|NoStartTLS)?

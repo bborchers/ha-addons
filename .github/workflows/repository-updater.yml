@@ -22,20 +22,22 @@ jobs:
       - name: Create branch
         run: git checkout -b "release/${{ steps.payload.outputs.slug }}"
 
-      - name: Update version in config.yaml
+      - name: Pull config.yaml, DOCS.md, CHANGELOG.md, icon.png, logo.png from the build repo
         run: |
           SLUG="${{ steps.payload.outputs.slug }}"
           VERSION="${{ steps.payload.outputs.version }}"
-          sed -i -E "s/^version: .*/version: \"${VERSION}\"/" "${SLUG}/config.yaml"
-
-      - name: Pull DOCS.md, CHANGELOG.md, icon.png, logo.png from the build repo
-        run: |
-          SLUG="${{ steps.payload.outputs.slug }}"
           REPO="${{ github.repository_owner }}/${{ steps.payload.outputs.build_repo }}"
-          for FILE in DOCS.md CHANGELOG.md icon.png logo.png; do
+          IMAGE="ghcr.io/${{ github.repository_owner }}/${{ steps.payload.outputs.build_repo }}/{arch}"
+
+          for FILE in config.yaml DOCS.md CHANGELOG.md icon.png logo.png; do
             curl -sSfL -o "${SLUG}/${FILE}" \
               "https://raw.githubusercontent.com/${REPO}/main/${SLUG}/${FILE}"
           done
+
+          # config.yaml differs from the build repo only in these two fields:
+          # a real version instead of "dev", and the GHCR image reference.
+          sed -i -E "s/^version: .*/version: \"${VERSION}\"/" "${SLUG}/config.yaml"
+          sed -i -E "/^url: /a image: \"${IMAGE}\"" "${SLUG}/config.yaml"
 
       - name: Generate badges in README.md from build repo data
         env:
