@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.2
+
+- Added missing changelog entry for 0.2.1 (no functional change)
+
+## 0.2.1
+
+- Added missing changelog entries for 0.1.5 and 0.2.0 (no functional change)
+
 ## 0.2.0
 
 - Added optional SMTP settings (`smtp_enabled`, `smtp_host`, `smtp_user`, `smtp_password`, `smtp_from_address`, `smtp_from_name`, `smtp_skip_verify`, `smtp_starttls_policy`)
