@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+- Updated the hassio-addons base image to v21.0.0
+
 ## 0.3.0
 
 - Added `translations/en.yaml` and `translations/de.yaml` so the Home Assistant UI shows human-readable names and descriptions for every configuration option instead of the raw option key
