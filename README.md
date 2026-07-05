@@ -1,11 +1,13 @@
 # Home Assistant Add-on Repository
 
-![Project Stage](https://img.shields.io/badge/Project%20Stage-Active-brightgreen)
-[![License](https://img.shields.io/github/license/bborchers/ha-addons)](LICENSE)
-![Architectures](https://img.shields.io/badge/architectures-aarch64%20%7C%20amd64-blue)
-[![Lint Addons](https://github.com/bborchers/ha-addons/actions/workflows/lint.yml/badge.svg)](https://github.com/bborchers/ha-addons/actions/workflows/lint.yml)
-![Maintenance](https://img.shields.io/maintenance/yes/2026)
-![Commits](https://img.shields.io/github/commit-activity/t/bborchers/ha-addons)
+![project stage](https://img.shields.io/badge/project%20stage-experimental-yellow)
+[![license](https://img.shields.io/github/license/bborchers/ha-addons)](LICENSE)
+![architectures](https://img.shields.io/badge/architectures-aarch64%20%7C%20amd64-blue)
+[![lint addons](https://github.com/bborchers/ha-addons/actions/workflows/lint.yml/badge.svg)](https://github.com/bborchers/ha-addons/actions/workflows/lint.yml)
+![maintenance](https://img.shields.io/maintenance/yes/2026)
+![commits](https://img.shields.io/github/commit-activity/t/bborchers/ha-addons)
+
+These add-ons are in an early, experimental stage — expect rough edges and breaking changes between releases.
 
 ## Add-ons in this repository
 
