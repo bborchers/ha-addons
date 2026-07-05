@@ -11,7 +11,7 @@ jobs:
     outputs:
       addons: ${{ steps.list.outputs.addons }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Determine add-on directories
         id: list
@@ -27,7 +27,7 @@ jobs:
       matrix:
         addon: ${{ fromJson(needs.find-addons.outputs.addons) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Lint ${{ matrix.addon }}
         uses: frenck/action-addon-linter@v2
