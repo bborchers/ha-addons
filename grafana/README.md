@@ -1,9 +1,12 @@
 # Grafana
 
-[![Release](https://img.shields.io/github/v/release/bborchers/ha-addons-grafana)](https://github.com/bborchers/ha-addons-grafana/releases/latest)
-![Project Status](https://img.shields.io/badge/Project%20Status-Active-brightgreen)
-[![License](https://img.shields.io/github/license/bborchers/ha-addons-grafana)](https://github.com/bborchers/ha-addons-grafana/blob/main/LICENSE)
-![Architectures](https://img.shields.io/badge/architectures-aarch64%20%7C%20amd64-blue)
-![Maintenance](https://img.shields.io/maintenance/yes/2026)
+[![release](https://img.shields.io/github/v/release/bborchers/ha-addons-grafana)](https://github.com/bborchers/ha-addons-grafana/releases/latest)
+![project stage](https://img.shields.io/badge/project%20stage-experimental-yellow)
+![project status](https://img.shields.io/badge/project%20status-active-brightgreen)
+[![license](https://img.shields.io/github/license/bborchers/ha-addons-grafana)](https://github.com/bborchers/ha-addons-grafana/blob/main/LICENSE)
+![architectures](https://img.shields.io/badge/architectures-aarch64%20%7C%20amd64-blue)
+![maintenance](https://img.shields.io/maintenance/yes/2026)
+
+This add-on is in an early, experimental stage — expect rough edges and breaking changes between releases.
 
 See [DOCS.md](DOCS.md) for installation and configuration. Source code and issues: [ha-addons-grafana](https://github.com/bborchers/ha-addons-grafana).
