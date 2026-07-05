@@ -4,6 +4,6 @@
   "timezone": "Europe/Berlin",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate: open updates",
-  "dependencyDashboardApproval": true,
+  "dependencyDashboardApproval": false,
   "semanticCommits": "enabled"
 }
