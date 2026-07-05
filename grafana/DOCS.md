@@ -118,6 +118,16 @@ Sets `GF_SMTP_STARTTLS_POLICY`. Controls StartTLS behavior. Possible values: `Op
 
 The Grafana database, logs, and plugins are stored in the persistent add-on data directory (`/data/grafana`) and are preserved across restarts and updates.
 
+### ⚠️ Uninstalling always deletes this data
+
+Home Assistant Supervisor's "Uninstall" dialog offers a checkbox to also delete the add-on's data — but regardless of that checkbox, Supervisor unconditionally removes the add-on's private data directory (`/data`) as part of uninstalling. The checkbox only controls a different, rarely used folder (`/config`), not the one this add-on actually stores its database in. This is a Home Assistant Supervisor behavior, not something this add-on can control or override.
+
+**Before uninstalling this add-on, create a Home Assistant backup that includes it** (Settings → System → Backups → Create Backup → select this add-on), if you want to keep the option to restore its data later. To restore:
+
+1. Reinstall the add-on (do not start it yet).
+2. Go to Settings → System → Backups, open the backup, and restore just this add-on.
+3. Start the add-on — the database, dashboards, and plugins from the backup will be in place.
+
 ## Migrating from the hassio-addons Grafana add-on
 
 If you previously used the community [hassio-addons Grafana add-on](https://github.com/hassio-addons/addon-grafana), its data lives in that add-on's own private data directory (typically `/mnt/data/supervisor/addons/data/a0d7b954_grafana` on the host) and is **not** accessible to this add-on automatically — Home Assistant Supervisor add-ons are sandboxed from each other's private data by design, and this add-on cannot read it during startup.
