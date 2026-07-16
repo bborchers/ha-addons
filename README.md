@@ -16,6 +16,7 @@ This is the **central repository** added to Home Assistant. For each add-on it c
 | Add-on | Description | Version | Release Date | Build Repo |
 |---|---|---|---|---|
 | [Grafana](grafana/) | Grafana analytics and monitoring platform | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-grafana)](https://github.com/bborchers/ha-addons-grafana/releases/latest) | 2026-07-05 | [ha-addons-grafana](https://github.com/bborchers/ha-addons-grafana) |
+| [Chrony](chrony/) | Chrony time synchronization service with configurable upstream servers and optional NTS | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-chrony)](https://github.com/bborchers/ha-addons-chrony/releases/latest) | 2026-07-15 | [ha-addons-chrony](https://github.com/bborchers/ha-addons-chrony) |
 
 ## Installing as a repository
 
