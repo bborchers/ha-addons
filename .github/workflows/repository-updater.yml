@@ -16,9 +16,13 @@ jobs:
       - name: Read configuration
         id: payload
         run: |
-          echo "slug=${{ github.event.client_payload.slug }}" >> "$GITHUB_OUTPUT"
+          SLUG="${{ github.event.client_payload.slug }}"
+          echo "slug=${SLUG}" >> "$GITHUB_OUTPUT"
           echo "version=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
-          echo "build_repo=ha-addons-${{ github.event.client_payload.slug }}" >> "$GITHUB_OUTPUT"
+          # Add-on slugs may use snake_case, while GitHub repository names use
+          # hyphens. Normalize only the repository suffix; the add-on path and
+          # Home Assistant slug keep their original value.
+          echo "build_repo=ha-addons-${SLUG//_/-}" >> "$GITHUB_OUTPUT"
 
       - name: Create branch
         run: git checkout -b "release/${{ steps.payload.outputs.slug }}"
