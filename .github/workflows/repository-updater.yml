@@ -7,10 +7,11 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v7
-        with:
-          token: ${{ secrets.REPO_TOKEN }}
 
       - name: Read configuration
         id: payload
@@ -116,7 +117,7 @@ jobs:
 
       - name: Create and merge pull request
         env:
-          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           PR_URL=$(gh pr create \
             --title "chore(${{ steps.payload.outputs.slug }}): release v${{ steps.payload.outputs.version }}" \
