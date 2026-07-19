@@ -15,5 +15,3 @@ ports_description:
   3001/tcp: "Uptime Kuma web interface"
 discovery:
   - uptime_kuma
-options: {}
-schema: {}
