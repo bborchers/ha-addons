@@ -1,4 +1,4 @@
-# Uptime Kuma
+# Uptimekuma
 
 [![release](https://img.shields.io/github/v/release/bborchers/ha-addons-uptimekuma)](https://github.com/bborchers/ha-addons-uptimekuma/releases/latest)
 ![project stage](https://img.shields.io/badge/project%20stage-experimental-yellow)
