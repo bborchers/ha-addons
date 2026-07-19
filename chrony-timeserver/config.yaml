@@ -1,8 +1,8 @@
 name: "Chrony Time Server"
-version: "0.2.0"
-slug: "chrony_timeserver"
+version: "0.4.0"
+slug: "chrony-timeserver"
 description: "Chrony-based time synchronization service"
-url: "https://github.com/bborchers/ha-addons-chrony-timeserver/tree/main/chrony_timeserver"
+url: "https://github.com/bborchers/ha-addons-chrony-timeserver/tree/main/chrony-timeserver"
 image: "ghcr.io/bborchers/ha-addons-chrony-timeserver/{arch}"
 arch:
   - aarch64

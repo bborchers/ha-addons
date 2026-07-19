@@ -16,7 +16,7 @@ This is the **central repository** added to Home Assistant. For each add-on it c
 | Add-on | Description | Version | Release Date | Build Repo |
 |---|---|---|---|---|
 | [Grafana](grafana/) | Grafana analytics and monitoring platform | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-grafana)](https://github.com/bborchers/ha-addons-grafana/releases/latest) | 2026-07-05 | [ha-addons-grafana](https://github.com/bborchers/ha-addons-grafana) |
-| [Chrony Time Server](chrony_timeserver/) | Chrony-based time synchronization service with configurable upstream servers and optional NTS | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-chrony-timeserver)](https://github.com/bborchers/ha-addons-chrony-timeserver/releases/latest) | — | [ha-addons-chrony-timeserver](https://github.com/bborchers/ha-addons-chrony-timeserver) |
+| [Chrony Time Server](chrony-timeserver/) | Chrony-based time synchronization service with configurable upstream servers and optional NTS | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-chrony-timeserver)](https://github.com/bborchers/ha-addons-chrony-timeserver/releases/latest) | — | [ha-addons-chrony-timeserver](https://github.com/bborchers/ha-addons-chrony-timeserver) |
 | [Uptime Kuma](uptimekuma/) | Self-hosted uptime monitoring with a web interface | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-uptimekuma)](https://github.com/bborchers/ha-addons-uptimekuma/releases/latest) | — | [ha-addons-uptimekuma](https://github.com/bborchers/ha-addons-uptimekuma) |
 
 ## Installing as a repository
