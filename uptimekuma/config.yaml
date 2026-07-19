@@ -1,0 +1,19 @@
+name: "Uptime Kuma"
+version: "0.1.0"
+slug: "uptimekuma"
+description: "Self-hosted uptime monitoring with a web interface"
+url: "https://github.com/bborchers/ha-addons-uptimekuma/tree/main/uptimekuma"
+image: "ghcr.io/bborchers/ha-addons-uptimekuma/{arch}"
+arch:
+  - aarch64
+  - amd64
+init: false
+webui: "http://[HOST]:[PORT:3001]"
+ports:
+  3001/tcp: 3001
+ports_description:
+  3001/tcp: "Uptime Kuma web interface"
+discovery:
+  - uptime_kuma
+options: {}
+schema: {}
