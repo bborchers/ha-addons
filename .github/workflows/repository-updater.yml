@@ -16,9 +16,13 @@ jobs:
       - name: Read configuration
         id: payload
         run: |
-          echo "slug=${{ github.event.client_payload.slug }}" >> "$GITHUB_OUTPUT"
+          SLUG="${{ github.event.client_payload.slug }}"
+          echo "slug=${SLUG}" >> "$GITHUB_OUTPUT"
           echo "version=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
-          echo "build_repo=ha-addons-${{ github.event.client_payload.slug }}" >> "$GITHUB_OUTPUT"
+          # Add-on slugs may use snake_case, while GitHub repository names use
+          # hyphens. Normalize only the repository suffix; the add-on path and
+          # Home Assistant slug keep their original value.
+          echo "build_repo=ha-addons-${SLUG//_/-}" >> "$GITHUB_OUTPUT"
 
       - name: Create branch
         run: git checkout -b "release/${{ steps.payload.outputs.slug }}"
@@ -60,6 +64,7 @@ jobs:
             "https://raw.githubusercontent.com/${REPO}/main/${SLUG}/config.yaml"
           ARCHES=$(awk '/^arch:/{flag=1;next}/^[a-zA-Z]/{flag=0}flag{gsub(/^[ -]+/,"");print}' /tmp/build-config.yaml \
             | paste -sd, - | sed 's/,/%20%7C%20/g')
+          TITLE=$(awk -F': ' '/^name:/{gsub(/^"|"$/, "", $2); print $2; exit}' /tmp/build-config.yaml)
 
           ARCHIVED=$(gh api "repos/${REPO}" --jq '.archived')
           if [ "$ARCHIVED" = "true" ]; then
@@ -70,7 +75,6 @@ jobs:
             MAINTAINED="yes"
           fi
           YEAR=$(date +%Y)
-          TITLE="${NAME^}"
 
           {
             echo "# ${TITLE}"
@@ -117,7 +121,9 @@ jobs:
 
       - name: Create and merge pull request
         env:
-          GH_TOKEN: ${{ github.token }}
+          # GitHub Actions' built-in token cannot create pull requests.
+          # A fine-grained PAT scoped to this repository is required here.
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
         run: |
           PR_URL=$(gh pr create \
             --title "chore(${{ steps.payload.outputs.slug }}): release v${{ steps.payload.outputs.version }}" \
