@@ -117,7 +117,9 @@ jobs:
 
       - name: Create and merge pull request
         env:
-          GH_TOKEN: ${{ github.token }}
+          # GitHub Actions' built-in token cannot create pull requests.
+          # A fine-grained PAT scoped to this repository is required here.
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
         run: |
           PR_URL=$(gh pr create \
             --title "chore(${{ steps.payload.outputs.slug }}): release v${{ steps.payload.outputs.version }}" \
