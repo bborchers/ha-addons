@@ -1,0 +1,19 @@
+name: "Chrony Time Server"
+version: "0.2.0"
+slug: "chrony_timeserver"
+description: "Chrony-based time synchronization service"
+url: "https://github.com/bborchers/ha-addons-chrony-timeserver/tree/main/chrony_timeserver"
+image: "ghcr.io/bborchers/ha-addons-chrony-timeserver/{arch}"
+arch:
+  - aarch64
+  - amd64
+privileged:
+  - SYS_TIME
+init: false
+options:
+  servers:
+    - pool.ntp.org
+  nts: false
+schema:
+  servers: list
+  nts: bool
