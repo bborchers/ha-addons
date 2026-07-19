@@ -60,6 +60,7 @@ jobs:
             "https://raw.githubusercontent.com/${REPO}/main/${SLUG}/config.yaml"
           ARCHES=$(awk '/^arch:/{flag=1;next}/^[a-zA-Z]/{flag=0}flag{gsub(/^[ -]+/,"");print}' /tmp/build-config.yaml \
             | paste -sd, - | sed 's/,/%20%7C%20/g')
+          TITLE=$(awk -F': ' '/^name:/{gsub(/^"|"$/, "", $2); print $2; exit}' /tmp/build-config.yaml)
 
           ARCHIVED=$(gh api "repos/${REPO}" --jq '.archived')
           if [ "$ARCHIVED" = "true" ]; then
@@ -70,7 +71,6 @@ jobs:
             MAINTAINED="yes"
           fi
           YEAR=$(date +%Y)
-          TITLE="${NAME^}"
 
           {
             echo "# ${TITLE}"
