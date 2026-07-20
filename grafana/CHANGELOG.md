@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+- Initial release after the repository history reset.
+
 ## 0.3.1
 
 - Updated the hassio-addons base image to v21.0.0
