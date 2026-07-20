@@ -1,5 +1,5 @@
 name: "Chrony Time Server"
-version: "0.4.0"
+version: "0.3.0"
 slug: "chrony-timeserver"
 description: "Chrony-based time synchronization service"
 url: "https://github.com/bborchers/ha-addons-chrony-timeserver/tree/main/chrony-timeserver"
