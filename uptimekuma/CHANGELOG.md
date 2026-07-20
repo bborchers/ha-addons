@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1
+
+- Updated Apprise to v1.12.0.
+
 ## 0.5.0
 
 - Initial release after the repository history reset.
