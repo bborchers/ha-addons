@@ -33,3 +33,34 @@ jobs:
         uses: frenck/action-addon-linter@v2
         with:
           path: "./${{ matrix.addon }}"
+
+  changelog:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Require changelog for add-on changes
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          changed_files=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+          failed=false
+
+          while IFS= read -r addon; do
+            if ! grep -q "^${addon}/" <<< "$changed_files"; then
+              continue
+            fi
+
+            if ! grep -qx "${addon}/CHANGELOG.md" <<< "$changed_files"; then
+              echo "Changes in ${addon}/ require an update to ${addon}/CHANGELOG.md."
+              failed=true
+            fi
+          done < <(find . -maxdepth 2 -name config.yaml -exec dirname {} \; | sed 's|^./||')
+
+          if [ "$failed" = true ]; then
+            exit 1
+          fi
