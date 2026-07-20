@@ -1,0 +1,35 @@
+name: Lint Addons
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  find-addons:
+    runs-on: ubuntu-latest
+    outputs:
+      addons: ${{ steps.list.outputs.addons }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Determine add-on directories
+        id: list
+        run: |
+          # Treat every directory containing a config.yaml as an add-on
+          ADDONS=$(find . -maxdepth 2 -name "config.yaml" -exec dirname {} \; | sed 's|^\./||' | jq -R -s -c 'split("\n")[:-1]')
+          echo "addons=${ADDONS}" >> "$GITHUB_OUTPUT"
+
+  lint:
+    needs: find-addons
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        addon: ${{ fromJson(needs.find-addons.outputs.addons) }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Lint ${{ matrix.addon }}
+        uses: frenck/action-addon-linter@v2
+        with:
+          path: "./${{ matrix.addon }}"
