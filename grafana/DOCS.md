@@ -141,7 +141,8 @@ To migrate manually, before starting this add-on for the first time:
    ```
    `f7a88481_grafana` is this add-on's data directory: Home Assistant derives it from the [ha-addons](https://github.com/bborchers/ha-addons) repository URL (first 8 hex characters of its SHA1 hash) followed by the add-on slug `grafana`. You can confirm it exists under `/mnt/data/supervisor/addons/data/`.
 3. Start this add-on. Grafana will pick up the existing database, dashboards, and plugins from `/data/grafana`.
-4. Once you've confirmed the migration worked, you can uninstall the old add-on.
+4. Re-enter the credentials for your data source connections — secrets such as passwords and access tokens (e.g. the InfluxDB access token) are not carried over by the migration and must be entered again in each data source's configuration.
+5. Once you've confirmed the migration worked, you can uninstall the old add-on.
 
 ## Support
 
