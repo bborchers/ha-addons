@@ -1,5 +1,5 @@
 name: "Chrony"
-version: "0.7.1"
+version: "0.7.2"
 slug: "chrony"
 description: "Chrony-based time synchronization service"
 url: "https://github.com/bborchers/ha-addons-chrony/tree/main/chrony"
