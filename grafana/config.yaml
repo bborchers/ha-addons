@@ -1,5 +1,5 @@
 name: "Grafana"
-version: "0.3.1"
+version: "0.5.0"
 slug: "grafana"
 description: "Grafana analytics and monitoring platform"
 url: "https://github.com/bborchers/ha-addons-grafana/tree/main/grafana"
