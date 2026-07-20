@@ -1,0 +1,141 @@
+name: Repository Updater
+
+on:
+  repository_dispatch:
+    types: [addon-release]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Read configuration
+        id: payload
+        run: |
+          SLUG="${{ github.event.client_payload.slug }}"
+          echo "slug=${SLUG}" >> "$GITHUB_OUTPUT"
+          echo "version=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
+          # Add-on slugs may use snake_case, while GitHub repository names use
+          # hyphens. Normalize only the repository suffix; the add-on path and
+          # Home Assistant slug keep their original value.
+          echo "build_repo=ha-addons-${SLUG//_/-}" >> "$GITHUB_OUTPUT"
+
+      - name: Create branch
+        run: git checkout -b "release/${{ steps.payload.outputs.slug }}"
+
+      - name: Pull config.yaml, DOCS.md, CHANGELOG.md, icon/logo, translations from the build repo
+        run: |
+          SLUG="${{ steps.payload.outputs.slug }}"
+          VERSION="${{ steps.payload.outputs.version }}"
+          BUILD_REPO="${{ steps.payload.outputs.build_repo }}"
+          IMAGE="ghcr.io/${{ github.repository_owner }}/${BUILD_REPO}/{arch}"
+
+          git clone --depth 1 "https://github.com/${{ github.repository_owner }}/${BUILD_REPO}.git" /tmp/build-repo
+
+          # Only these are user-facing metadata, synced as-is (as files or
+          # directories). Everything else in the build repo (Dockerfile,
+          # run.sh, build.yaml, ...) is build code and stays there.
+          for ITEM in config.yaml DOCS.md CHANGELOG.md icon.png logo.png translations; do
+            rm -rf "${SLUG}/${ITEM}"
+            if [ -e "/tmp/build-repo/${SLUG}/${ITEM}" ]; then
+              cp -r "/tmp/build-repo/${SLUG}/${ITEM}" "${SLUG}/${ITEM}"
+            fi
+          done
+
+          # config.yaml differs from the build repo only in these two fields:
+          # a real version instead of "dev", and the GHCR image reference.
+          sed -i -E "s/^version: .*/version: \"${VERSION}\"/" "${SLUG}/config.yaml"
+          sed -i -E "/^url: /a image: \"${IMAGE}\"" "${SLUG}/config.yaml"
+
+      - name: Generate badges in README.md from build repo data
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SLUG="${{ steps.payload.outputs.slug }}"
+          NAME="${{ steps.payload.outputs.slug }}"
+          BUILD_REPO="${{ steps.payload.outputs.build_repo }}"
+          REPO="${{ github.repository_owner }}/${BUILD_REPO}"
+
+          curl -sSfL -o /tmp/build-config.yaml \
+            "https://raw.githubusercontent.com/${REPO}/main/${SLUG}/config.yaml"
+          ARCHES=$(awk '/^arch:/{flag=1;next}/^[a-zA-Z]/{flag=0}flag{gsub(/^[ -]+/,"");print}' /tmp/build-config.yaml \
+            | paste -sd, - | sed 's/,/%20%7C%20/g')
+          TITLE=$(awk -F': ' '/^name:/{gsub(/^"|"$/, "", $2); print $2; exit}' /tmp/build-config.yaml)
+
+          ARCHIVED=$(gh api "repos/${REPO}" --jq '.archived')
+          if [ "$ARCHIVED" = "true" ]; then
+            STATUS_BADGE="archived-red"
+            MAINTAINED="no"
+          else
+            STATUS_BADGE="active-brightgreen"
+            MAINTAINED="yes"
+          fi
+          YEAR=$(date +%Y)
+
+          {
+            echo "# ${TITLE}"
+            echo
+            echo "[![release](https://img.shields.io/github/v/release/${REPO})](https://github.com/${REPO}/releases/latest)"
+            echo "![project stage](https://img.shields.io/badge/project%20stage-experimental-yellow)"
+            echo "![project status](https://img.shields.io/badge/project%20status-${STATUS_BADGE})"
+            echo "[![license](https://img.shields.io/github/license/${REPO})](https://github.com/${REPO}/blob/main/LICENSE)"
+            echo "![architectures](https://img.shields.io/badge/architectures-${ARCHES}-blue)"
+            echo "![maintenance](https://img.shields.io/maintenance/${MAINTAINED}/${YEAR})"
+            echo
+            echo "This add-on is in an early, experimental stage — expect rough edges and breaking changes between releases."
+            echo
+            echo "See [DOCS.md](DOCS.md) for installation and configuration. Source code and issues: [${BUILD_REPO}](https://github.com/${REPO})."
+          } > "${SLUG}/README.md"
+
+      - name: Update version and release date in root README table
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SLUG="${{ steps.payload.outputs.slug }}"
+          BUILD_REPO="${{ steps.payload.outputs.build_repo }}"
+          REPO="${{ github.repository_owner }}/${BUILD_REPO}"
+
+          VERSION_BADGE="[![Version](https://img.shields.io/github/v/release/${REPO})](https://github.com/${REPO}/releases/latest)"
+          RELEASE_DATE=$(gh api "repos/${REPO}/releases/latest" --jq '.published_at' | cut -dT -f1)
+
+          awk -F'|' -v slug="$SLUG" -v version="$VERSION_BADGE" -v date="$RELEASE_DATE" '
+            $2 ~ ("\\(" slug "/\\)") {
+              $4 = " " version " "
+              $5 = " " date " "
+            }
+            { print }
+          ' OFS='|' README.md > README.md.tmp
+          mv README.md.tmp README.md
+
+      - name: Commit and push changes
+        id: changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ steps.payload.outputs.slug }}" README.md
+          if git diff --cached --quiet; then
+            echo "Repository metadata is already up to date."
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "chore(${{ steps.payload.outputs.slug }}): release v${{ steps.payload.outputs.version }}"
+          git push origin "release/${{ steps.payload.outputs.slug }}" --force
+          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+
+      - name: Create and merge pull request
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          # GitHub Actions' built-in token cannot create pull requests.
+          # A fine-grained PAT scoped to this repository is required here.
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
+        run: |
+          PR_URL=$(gh pr create \
+            --title "chore(${{ steps.payload.outputs.slug }}): release v${{ steps.payload.outputs.version }}" \
+            --body "Automatic update of \`${{ steps.payload.outputs.slug }}/config.yaml\` to version \`${{ steps.payload.outputs.version }}\`, triggered by a release in [${{ steps.payload.outputs.build_repo }}](https://github.com/${{ github.repository_owner }}/${{ steps.payload.outputs.build_repo }})." \
+            --base main \
+            --head "release/${{ steps.payload.outputs.slug }}")
+          gh pr merge --merge --auto "$PR_URL"

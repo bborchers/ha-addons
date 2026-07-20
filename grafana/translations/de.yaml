@@ -1,0 +1,52 @@
+configuration:
+  log_level:
+    name: Log-Level
+    description: Legt die Ausführlichkeit der Grafana-Logs fest.
+  admin_user:
+    name: Admin-Benutzername
+    description: Benutzername für das initiale Grafana-Administratorkonto.
+  admin_password:
+    name: Admin-Passwort
+    description: Passwort für das initiale Grafana-Administratorkonto.
+  anonymous_access:
+    name: Anonymen Zugriff erlauben
+    description: Erlaubt Lesezugriff auf Grafana ohne Anmeldung.
+  root_url:
+    name: Root-URL
+    description: Die vollständige URL, unter der Grafana im Browser erreichbar ist, z. B. wenn Grafana über einen Reverse-Proxy oder einen anderen Hostnamen erreicht wird.
+  domain:
+    name: Domain
+    description: Der Domainname, unter dem Grafana bereitgestellt wird.
+  ssl:
+    name: SSL aktivieren
+    description: Aktiviert HTTPS mit einem Zertifikat aus dem /ssl-Verzeichnis von Home Assistant.
+  certfile:
+    name: Zertifikatsdatei
+    description: Dateiname der Zertifikatsdatei im /ssl-Verzeichnis von Home Assistant.
+  keyfile:
+    name: Schlüsseldatei
+    description: Dateiname der privaten Schlüsseldatei im /ssl-Verzeichnis von Home Assistant.
+  smtp_enabled:
+    name: SMTP aktivieren
+    description: Aktiviert den integrierten SMTP-E-Mail-Versand von Grafana.
+  smtp_host:
+    name: SMTP-Server
+    description: Adresse des SMTP-Servers inklusive Port, z. B. smtp.example.com:587.
+  smtp_user:
+    name: SMTP-Benutzername
+    description: Benutzername für die SMTP-Authentifizierung.
+  smtp_password:
+    name: SMTP-Passwort
+    description: Passwort für die SMTP-Authentifizierung.
+  smtp_from_address:
+    name: Absender-E-Mail-Adresse
+    description: E-Mail-Adresse, die als Absender für ausgehende E-Mails verwendet wird.
+  smtp_from_name:
+    name: Absendername
+    description: Anzeigename, der als Absender für ausgehende E-Mails verwendet wird.
+  smtp_skip_verify:
+    name: TLS-Prüfung überspringen
+    description: Überspringt die Prüfung der Zertifikatskette und des Hostnamens des SMTP-Servers. Nur für vertrauenswürdige interne Server mit selbstsignierten Zertifikaten verwenden.
+  smtp_starttls_policy:
+    name: StartTLS-Richtlinie
+    description: Legt das StartTLS-Verhalten bei der Verbindung zum SMTP-Server fest.

@@ -1,0 +1,27 @@
+name: "Chrony"
+version: "0.7.1"
+slug: "chrony"
+description: "Chrony-based time synchronization service"
+url: "https://github.com/bborchers/ha-addons-chrony/tree/main/chrony"
+image: "ghcr.io/bborchers/ha-addons-chrony/{arch}"
+arch:
+  - aarch64
+  - amd64
+privileged:
+  - SYS_TIME
+init: false
+ports:
+  123/udp: 123
+ports_description:
+  123/udp: "Network Time Protocol (NTP)"
+options:
+  servers:
+    - pool.ntp.org
+  nts: false
+  allowed_networks: []
+schema:
+  servers:
+    - str
+  nts: bool
+  allowed_networks:
+    - str

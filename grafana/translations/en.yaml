@@ -1,0 +1,52 @@
+configuration:
+  log_level:
+    name: Log Level
+    description: Controls the verbosity of the Grafana logs.
+  admin_user:
+    name: Admin Username
+    description: Username for the initial Grafana administrator account.
+  admin_password:
+    name: Admin Password
+    description: Password for the initial Grafana administrator account.
+  anonymous_access:
+    name: Allow Anonymous Access
+    description: Allow read-only access to Grafana without logging in.
+  root_url:
+    name: Root URL
+    description: The full URL used to access Grafana from a browser, e.g. when reachable through a reverse proxy or a different hostname.
+  domain:
+    name: Domain
+    description: The domain name Grafana is served from.
+  ssl:
+    name: Enable SSL
+    description: Enable HTTPS using a certificate from Home Assistant's /ssl directory.
+  certfile:
+    name: Certificate File
+    description: Filename of the certificate file inside Home Assistant's /ssl directory.
+  keyfile:
+    name: Key File
+    description: Filename of the private key file inside Home Assistant's /ssl directory.
+  smtp_enabled:
+    name: Enable SMTP
+    description: Enable Grafana's built-in SMTP email sender.
+  smtp_host:
+    name: SMTP Server
+    description: SMTP server address, including port, e.g. smtp.example.com:587.
+  smtp_user:
+    name: SMTP Username
+    description: Username for SMTP authentication.
+  smtp_password:
+    name: SMTP Password
+    description: Password for SMTP authentication.
+  smtp_from_address:
+    name: From Email Address
+    description: Email address used as the sender for outgoing emails.
+  smtp_from_name:
+    name: From Name
+    description: Display name used as the sender for outgoing emails.
+  smtp_skip_verify:
+    name: Skip TLS Verification
+    description: Skip verification of the SMTP server's certificate chain and hostname. Only use this for trusted internal servers with self-signed certificates.
+  smtp_starttls_policy:
+    name: StartTLS Policy
+    description: Controls StartTLS behavior when connecting to the SMTP server.
