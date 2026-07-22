@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1
+
+- Updated Grafana OSS to 13.1.1.
+
 ## 0.5.0
 
 - Initial release after the repository history reset.
