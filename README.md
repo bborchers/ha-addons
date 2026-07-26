@@ -41,3 +41,4 @@ A new add-on consists of three parts:
 3. **A table row** added to this README (add-on, description, version badge `https://img.shields.io/github/v/release/bborchers/ha-addons-<slug>`, release date, build repo link). From then on, the version and release date are automatically updated on every `repository_dispatch` by the `repository-updater` workflow.
 
 `.github/workflows/lint.yml` automatically validates every `config.yaml` here against the HA schema.
+
