@@ -1,7 +1,5 @@
 # Changelog
 
-## 0.7.7
-
 ## [0.7.7](https://github.com/bborchers/ha-addons-chrony/compare/v0.7.6...v0.7.7) (2026-08-04)
 
 
@@ -10,12 +8,7 @@
 * run semantic-release directly via npx and label dependency bumps as fix(deps) ([#23](https://github.com/bborchers/ha-addons-chrony/issues/23)) ([3274ff5](https://github.com/bborchers/ha-addons-chrony/commit/3274ff5e6470dd83bacc4f6b53ef43bee92f9d8e))
 
 
-## 0.7.6
-
 ## [0.7.6](https://github.com/bborchers/ha-addons-chrony/compare/v0.7.5...v0.7.6) (2026-08-04)
-
-
-
 
 
 ## 0.7.5

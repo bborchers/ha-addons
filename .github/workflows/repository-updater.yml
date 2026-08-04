@@ -68,10 +68,11 @@ jobs:
 
           [ -f "$CHANGELOG" ] || echo "# Changelog" > "$CHANGELOG"
 
+          # The release notes already start with their own "## [version](...)
+          # (date)" heading (added by semantic-release), so they're prepended
+          # as-is rather than under an extra heading of our own.
           {
             echo "# Changelog"
-            echo
-            echo "## ${VERSION}"
             echo
             cat /tmp/notes.md
             echo
