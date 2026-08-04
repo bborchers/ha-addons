@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.2
+
+- No functional change (CI/Renovate automation only).
+
 ## 0.5.1
 
 - Updated Apprise to v1.12.0.
