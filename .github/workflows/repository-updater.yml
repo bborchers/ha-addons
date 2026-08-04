@@ -27,7 +27,7 @@ jobs:
       - name: Create branch
         run: git checkout -b "release/${{ steps.payload.outputs.slug }}"
 
-      - name: Pull config.yaml, DOCS.md, CHANGELOG.md, icon/logo, translations from the build repo
+      - name: Pull config.yaml, DOCS.md, icon/logo, translations from the build repo
         run: |
           SLUG="${{ steps.payload.outputs.slug }}"
           VERSION="${{ steps.payload.outputs.version }}"
@@ -39,7 +39,10 @@ jobs:
           # Only these are user-facing metadata, synced as-is (as files or
           # directories). Everything else in the build repo (Dockerfile,
           # run.sh, build.yaml, ...) is build code and stays there.
-          for ITEM in config.yaml DOCS.md CHANGELOG.md icon.png logo.png translations; do
+          # CHANGELOG.md is not synced: the build repos no longer keep one
+          # (semantic-release generates GitHub Release notes instead), so it
+          # is assembled from those release notes in a separate step below.
+          for ITEM in config.yaml DOCS.md icon.png logo.png translations; do
             rm -rf "${SLUG}/${ITEM}"
             if [ -e "/tmp/build-repo/${SLUG}/${ITEM}" ]; then
               cp -r "/tmp/build-repo/${SLUG}/${ITEM}" "${SLUG}/${ITEM}"
@@ -50,6 +53,31 @@ jobs:
           # a real version instead of "dev", and the GHCR image reference.
           sed -i -E "s/^version: .*/version: \"${VERSION}\"/" "${SLUG}/config.yaml"
           sed -i -E "/^url: /a image: \"${IMAGE}\"" "${SLUG}/config.yaml"
+
+      - name: Prepend the release notes to CHANGELOG.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SLUG="${{ steps.payload.outputs.slug }}"
+          VERSION="${{ steps.payload.outputs.version }}"
+          BUILD_REPO="${{ steps.payload.outputs.build_repo }}"
+          REPO="${{ github.repository_owner }}/${BUILD_REPO}"
+          CHANGELOG="${SLUG}/CHANGELOG.md"
+
+          gh api "repos/${REPO}/releases/tags/v${VERSION}" --jq '.body' > /tmp/notes.md
+
+          [ -f "$CHANGELOG" ] || echo "# Changelog" > "$CHANGELOG"
+
+          {
+            echo "# Changelog"
+            echo
+            echo "## ${VERSION}"
+            echo
+            cat /tmp/notes.md
+            echo
+            tail -n +2 "$CHANGELOG" | sed '/./,$!d'
+          } > "${CHANGELOG}.new"
+          mv "${CHANGELOG}.new" "$CHANGELOG"
 
       - name: Generate badges in README.md from build repo data
         env:
