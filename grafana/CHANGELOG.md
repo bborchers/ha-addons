@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.2
+
+- Updated the hassio-addons base image to v21.0.1.
+
 ## 0.5.1
 
 - Updated Grafana OSS to 13.1.1.
