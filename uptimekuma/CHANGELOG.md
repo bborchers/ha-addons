@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.3
+
+- No functional change (CI/Renovate automation only).
+
 ## 0.5.2
 
 - No functional change (CI/Renovate automation only).
