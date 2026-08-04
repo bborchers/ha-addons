@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.6
+
+## [0.7.6](https://github.com/bborchers/ha-addons-chrony/compare/v0.7.5...v0.7.6) (2026-08-04)
+
+
+
+
+
 ## 0.7.5
 
 - No functional change (CI/Renovate automation only).
