@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.7
+
+## [0.5.7](https://github.com/bborchers/ha-addons-grafana/compare/v0.5.6...v0.5.7) (2026-08-04)
+
+
+### Bug Fixes
+
+* run semantic-release directly via npx and label dependency bumps as fix(deps) ([#40](https://github.com/bborchers/ha-addons-grafana/issues/40)) ([820a646](https://github.com/bborchers/ha-addons-grafana/commit/820a646d2694a10f0eecf3e89e046c8e42caecd8))
+
+
 ## 0.5.6
 
 ## [0.5.6](https://github.com/bborchers/ha-addons-grafana/compare/v0.5.5...v0.5.6) (2026-08-04)
