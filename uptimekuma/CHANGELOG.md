@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.5
+
+## [0.5.5](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.4...v0.5.5) (2026-08-04)
+
+
+
+
+
 ## 0.5.4
 
 - No functional change (CI/Renovate automation only).
