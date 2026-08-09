@@ -15,6 +15,7 @@ This is the **central repository** added to Home Assistant. For each add-on it c
 
 | Add-on | Description | Version | Release Date | Build Repo |
 |---|---|---|---|---|
+| [InfluxDB 3 Core](influxdb3/) | InfluxDB 3 Core time-series database | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-influxdb3)](https://github.com/bborchers/ha-addons-influxdb3/releases/latest) | 2026-08-09 | [ha-addons-influxdb3](https://github.com/bborchers/ha-addons-influxdb3) |
 | [Grafana](grafana/) | Grafana analytics and monitoring platform | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-grafana)](https://github.com/bborchers/ha-addons-grafana/releases/latest) | 2026-08-04 | [ha-addons-grafana](https://github.com/bborchers/ha-addons-grafana) |
 | [Chrony](chrony/) | Chrony-based time synchronization service with configurable upstream servers and optional NTS | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-chrony)](https://github.com/bborchers/ha-addons-chrony/releases/latest) | 2026-08-04 | [ha-addons-chrony](https://github.com/bborchers/ha-addons-chrony) |
 | [Uptime Kuma](uptimekuma/) | Self-hosted uptime monitoring with a web interface | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-uptimekuma)](https://github.com/bborchers/ha-addons-uptimekuma/releases/latest) | 2026-08-04 | [ha-addons-uptimekuma](https://github.com/bborchers/ha-addons-uptimekuma) |
@@ -41,4 +42,3 @@ A new add-on consists of three parts:
 3. **A table row** added to this README (add-on, description, version badge `https://img.shields.io/github/v/release/bborchers/ha-addons-<slug>`, release date, build repo link). From then on, the version and release date are automatically updated on every `repository_dispatch` by the `repository-updater` workflow.
 
 `.github/workflows/lint.yml` automatically validates every `config.yaml` here against the HA schema.
-
