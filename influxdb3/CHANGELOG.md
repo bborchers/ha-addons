@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/bborchers/ha-addons-influxdb3/compare/v1.0.2...v1.0.3) (2026-08-09)
+
+
+### Bug Fixes
+
+* declare build base argument globally ([b5b7859](https://github.com/bborchers/ha-addons-influxdb3/commit/b5b78596446117b47fbca8f9a27751be183dceeb))
+
+
 ## [1.0.1](https://github.com/bborchers/ha-addons-influxdb3/compare/v1.0.0...v1.0.1) (2026-08-09)
 
 
