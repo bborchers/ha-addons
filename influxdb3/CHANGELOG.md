@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/bborchers/ha-addons-influxdb3/compare/v1.0.0...v1.0.1) (2026-08-09)
+
+
+### Bug Fixes
+
+* add glibc compatibility for InfluxDB binary ([d7af558](https://github.com/bborchers/ha-addons-influxdb3/commit/d7af5580e3a7c3c432861daa682828b5898fc07c))
+
+
 # 1.0.0 (2026-08-09)
 
 
