@@ -1,5 +1,5 @@
 name: "InfluxDB 3 Core"
-version: "1.0.1"
+version: "1.0.3"
 slug: "influxdb3"
 description: "InfluxDB 3 Core time-series database"
 url: "https://github.com/bborchers/ha-addons-influxdb3/tree/main/influxdb3"
