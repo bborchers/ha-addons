@@ -1,0 +1,27 @@
+name: "InfluxDB 3 Core"
+version: "0.1.0"
+slug: "influxdb3"
+description: "InfluxDB 3 Core time-series database"
+url: "https://github.com/bborchers/ha-addons-influxdb3/tree/main/influxdb3"
+image: "ghcr.io/bborchers/ha-addons-influxdb3/{arch}"
+arch:
+  - aarch64
+  - amd64
+init: false
+webui: "http://[HOST]:[PORT:8181]"
+ports:
+  8181/tcp: 8181
+ports_description:
+  8181/tcp: "InfluxDB HTTP API"
+options:
+  log_level: info
+  node_id: "home-assistant"
+  without_auth: false
+  admin_token: ""
+  disable_telemetry: true
+schema:
+  log_level: list(error|warn|info|debug|trace)
+  node_id: str
+  without_auth: bool
+  admin_token: password?
+  disable_telemetry: bool
