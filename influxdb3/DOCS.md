@@ -14,16 +14,50 @@ admin_token: ""
 disable_telemetry: true
 ```
 
+### Authentication
+
 Authentication is enabled by default. Set `admin_token` before the first start
-to provide a preconfigured admin token. If no token is configured, create the
-initial operator token from the add-on terminal after starting it:
+to provide a preconfigured admin token. The token is stored in the persistent
+add-on data directory and is only used to initialize a new database.
+
+If no token is configured, create the initial operator token from the add-on
+terminal after starting the add-on:
 
 ```sh
 influxdb3 create token --admin
 ```
 
-`without_auth: true` disables authentication completely and should only be used
-on a trusted, isolated network. Data and plugins persist below `/data/influxdb3`.
+For a trusted, isolated Home Assistant network, `without_auth: true` disables
+authentication completely. Do not expose an unauthenticated instance to an
+untrusted network.
 
-See the [build repository](https://github.com/bborchers/ha-addons-influxdb3) for
-support and the full documentation.
+### Option: `log_level`
+
+Sets the InfluxDB log filter. Supported values are `error`, `warn`, `info`,
+`debug`, and `trace`. Default: `info`.
+
+### Option: `node_id`
+
+Unique identifier for this server node. It is used as part of the local data
+storage path and must contain only letters, numbers, and hyphens. Default:
+`home-assistant`.
+
+### Option: `admin_token`
+
+Optional admin token used to initialize authentication on a new data directory.
+Keep this value secret. Existing tokens are not replaced on subsequent starts.
+
+### Option: `disable_telemetry`
+
+Disables InfluxDB telemetry uploads. Default: `true`.
+
+## Data and backups
+
+Database files and processing-engine plugins are stored below
+`/data/influxdb3` and persist across add-on restarts and upgrades. Create a
+Home Assistant backup before uninstalling the add-on; Supervisor removes an
+add-on's private data directory during uninstall.
+
+## Support
+
+Please report issues in the [build repository](https://github.com/bborchers/ha-addons-influxdb3).
