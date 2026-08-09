@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.4](https://github.com/bborchers/ha-addons-influxdb3/compare/v1.0.3...v1.0.4) (2026-08-09)
+
+
+### Bug Fixes
+
+* include Alpine runtime libraries ([5668062](https://github.com/bborchers/ha-addons-influxdb3/commit/566806212efdd364db5a20abf6723a42e8f5a822))
+
+
 ## [1.0.3](https://github.com/bborchers/ha-addons-influxdb3/compare/v1.0.2...v1.0.3) (2026-08-09)
 
 
