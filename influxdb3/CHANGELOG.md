@@ -1,5 +1,13 @@
 # Changelog
 
+# [1.1.0](https://github.com/bborchers/ha-addons-influxdb3/compare/v1.0.4...v1.1.0) (2026-08-09)
+
+
+### Features
+
+* integrate InfluxDB 3 Explorer ([ce00c91](https://github.com/bborchers/ha-addons-influxdb3/commit/ce00c9182f655f3fef6b06ba863b84ab783828d4))
+
+
 ## [1.0.4](https://github.com/bborchers/ha-addons-influxdb3/compare/v1.0.3...v1.0.4) (2026-08-09)
 
 

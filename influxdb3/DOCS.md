@@ -2,13 +2,22 @@
 
 This add-on provides [InfluxDB 3 Core](https://docs.influxdata.com/influxdb3/core/),
 a time-series database for Home Assistant and other applications. The HTTP API
-is available at `http://<home-assistant-ip>:8181`.
+is available at `http://<home-assistant-ip>:8181`. InfluxDB 3 Explorer is
+available at `http://<home-assistant-ip>:8080`.
+
+## InfluxDB 3 Explorer
+
+The add-on includes the official InfluxDB 3 Explorer. Its `explorer_mode`
+defaults to `query`, which provides read-only Explorer functionality according
+to the configured InfluxDB token permissions. Set it to `admin` to enable
+database, token, and plugin administration.
 
 ## Configuration
 
 ```yaml
 log_level: info
 node_id: "home-assistant"
+explorer_mode: query
 without_auth: false
 admin_token: ""
 disable_telemetry: true
