@@ -26,15 +26,15 @@ disable_telemetry: true
 ### Authentication
 
 Authentication is enabled by default. Set `admin_token` before the first start
-to provide a preconfigured admin token. The token is stored in the persistent
-add-on data directory and is only used to initialize a new database.
+to provide a preconfigured admin token. If no token is configured, the add-on
+creates an admin token automatically on first start and stores it in the
+persistent add-on data directory. Existing tokens are reused on later starts.
 
-If no token is configured, create the initial operator token from the add-on
-terminal after starting the add-on:
-
-```sh
-influxdb3 create token --admin
-```
+The bundled Explorer is preconfigured automatically with a connection named
+`Home Assistant InfluxDB 3` at `http://localhost:8181`, using the same admin
+token. The database field is left empty so the connection does not assume a
+database that the add-on has not created; select or create the desired database
+in Explorer as needed.
 
 For a trusted, isolated Home Assistant network, `without_auth: true` disables
 authentication completely. Do not expose an unauthenticated instance to an
@@ -54,7 +54,13 @@ storage path and must contain only letters, numbers, and hyphens. Default:
 ### Option: `admin_token`
 
 Optional admin token used to initialize authentication on a new data directory.
-Keep this value secret. Existing tokens are not replaced on subsequent starts.
+If omitted, the add-on generates and persists an admin token automatically.
+Keep this value secret. Existing generated tokens are reused on subsequent
+starts.
+
+When `without_auth: true` is enabled, no token is generated and Explorer is
+preconfigured without a token. Do not expose an unauthenticated instance to an
+untrusted network.
 
 ### Option: `disable_telemetry`
 

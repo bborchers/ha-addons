@@ -1,5 +1,13 @@
 # Changelog
 
+# [1.2.0](https://github.com/bborchers/ha-addons-influxdb3/compare/v1.1.0...v1.2.0) (2026-08-11)
+
+
+### Features
+
+* **influxdb3:** initialize admin token and Explorer connection ([965efb8](https://github.com/bborchers/ha-addons-influxdb3/commit/965efb880e78face74943b5d6df4a3bc97525fd0))
+
+
 # [1.1.0](https://github.com/bborchers/ha-addons-influxdb3/compare/v1.0.4...v1.1.0) (2026-08-09)
 
 
