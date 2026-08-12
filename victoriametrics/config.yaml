@@ -1,5 +1,5 @@
 name: "VictoriaMetrics"
-version: "1.1.0"
+version: "1.2.0"
 slug: "victoriametrics"
 description: "VictoriaMetrics single-node time-series database"
 url: "https://github.com/bborchers/ha-addons-victoriametrics/tree/main/victoriametrics"
@@ -15,7 +15,7 @@ ports_description:
   8428/tcp: "VictoriaMetrics HTTP API and Web UI"
 options:
   log_level: INFO
-  retention_period: "1"
+  retention_period: "1m"
   username: "admin"
   password: "change-me"
 schema:
