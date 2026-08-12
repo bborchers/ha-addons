@@ -1,5 +1,5 @@
 name: "VictoriaMetrics"
-version: "0.1.0"
+version: "1.0.0"
 slug: "victoriametrics"
 description: "VictoriaMetrics single-node time-series database"
 url: "https://github.com/bborchers/ha-addons-victoriametrics/tree/main/victoriametrics"
