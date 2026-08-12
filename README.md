@@ -15,6 +15,7 @@ This is the **central repository** added to Home Assistant. For each add-on it c
 
 | Add-on | Description | Version | Release Date | Build Repo |
 |---|---|---|---|---|
+| [VictoriaMetrics](victoriametrics/) | VictoriaMetrics single-node time-series database | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-victoriametrics)](https://github.com/bborchers/ha-addons-victoriametrics/releases/latest) | 2026-08-12 | [ha-addons-victoriametrics](https://github.com/bborchers/ha-addons-victoriametrics) |
 | [InfluxDB 3 Core](influxdb3/) | InfluxDB 3 Core time-series database | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-influxdb3)](https://github.com/bborchers/ha-addons-influxdb3/releases/latest) | 2026-08-12 | [ha-addons-influxdb3](https://github.com/bborchers/ha-addons-influxdb3) |
 | [Grafana](grafana/) | Grafana analytics and monitoring platform | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-grafana)](https://github.com/bborchers/ha-addons-grafana/releases/latest) | 2026-08-11 | [ha-addons-grafana](https://github.com/bborchers/ha-addons-grafana) |
 | [Chrony](chrony/) | Chrony-based time synchronization service with configurable upstream servers and optional NTS | [![Version](https://img.shields.io/github/v/release/bborchers/ha-addons-chrony)](https://github.com/bborchers/ha-addons-chrony/releases/latest) | 2026-08-04 | [ha-addons-chrony](https://github.com/bborchers/ha-addons-chrony) |
