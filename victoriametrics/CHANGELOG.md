@@ -1,5 +1,13 @@
 # Changelog
 
+# [1.2.0](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.1.0...v1.2.0) (2026-08-12)
+
+
+### Features
+
+* configure retention and translations ([#3](https://github.com/bborchers/ha-addons-victoriametrics/issues/3)) ([b3b6f7a](https://github.com/bborchers/ha-addons-victoriametrics/commit/b3b6f7a381f9f0c33b3df9a6d3d88a70e3a69dbe))
+
+
 # [1.1.0](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.0.1...v1.1.0) (2026-08-12)
 
 
