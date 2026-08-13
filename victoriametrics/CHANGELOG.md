@@ -1,5 +1,13 @@
 # Changelog
 
+# [1.4.0](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.3.1...v1.4.0) (2026-08-13)
+
+
+### Features
+
+* support yaml scrape config file ([#6](https://github.com/bborchers/ha-addons-victoriametrics/issues/6)) ([53e2d2e](https://github.com/bborchers/ha-addons-victoriametrics/commit/53e2d2e8e587533e4292329d2608631dee78139b))
+
+
 ## [1.3.1](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.3.0...v1.3.1) (2026-08-13)
 
 
