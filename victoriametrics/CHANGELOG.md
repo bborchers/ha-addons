@@ -1,5 +1,13 @@
 # Changelog
 
+# [1.3.0](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.2.0...v1.3.0) (2026-08-13)
+
+
+### Features
+
+* add configurable scrape jobs ([#4](https://github.com/bborchers/ha-addons-victoriametrics/issues/4)) ([eed5a12](https://github.com/bborchers/ha-addons-victoriametrics/commit/eed5a12405527ec2bbe4d476ea5b18ecc7518f8a))
+
+
 # [1.2.0](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.1.0...v1.2.0) (2026-08-12)
 
 
