@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.1](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.3.0...v1.3.1) (2026-08-13)
+
+
+### Bug Fixes
+
+* open web ui through home assistant ingress ([#5](https://github.com/bborchers/ha-addons-victoriametrics/issues/5)) ([8e812db](https://github.com/bborchers/ha-addons-victoriametrics/commit/8e812db3ee15d5a4eb2b3b6d26ec1849867e83fc))
+
+
 # [1.3.0](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.2.0...v1.3.0) (2026-08-13)
 
 
