@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.9](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.8...v0.5.9) (2026-08-20)
+
+
 ## [0.5.8](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.7...v0.5.8) (2026-08-18)
 
 
