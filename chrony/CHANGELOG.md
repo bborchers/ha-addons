@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.7.8](https://github.com/bborchers/ha-addons-chrony/compare/v0.7.7...v0.7.8) (2026-08-21)
+
+### Bug Fixes
+
+* give chore(deps)/chore(ci) commits their own release notes section ([#27](https://github.com/bborchers/ha-addons-chrony/issues/27)) ([8399f7f](https://github.com/bborchers/ha-addons-chrony/commit/8399f7f08638915c318eb4ac7ff9da38b1cc4205))
+* install a compatible conventional-changelog-conventionalcommits version ([#28](https://github.com/bborchers/ha-addons-chrony/issues/28)) ([1e604a5](https://github.com/bborchers/ha-addons-chrony/commit/1e604a57b76f31ba9690894097c3326258683103)), closes [#27](https://github.com/bborchers/ha-addons-chrony/issues/27) [47/#48](https://github.com/47/ha-addons-chrony/issues/48)
+
+### CI Updates
+
+* **ci:** disable Renovate automerge and assign PRs to bborchers ([#25](https://github.com/bborchers/ha-addons-chrony/issues/25)) ([a645bf9](https://github.com/bborchers/ha-addons-chrony/commit/a645bf9bc6fa60b8ad23af1ab85361f3b525f27c))
+* **ci:** update github actions ([#24](https://github.com/bborchers/ha-addons-chrony/issues/24)) ([5064a68](https://github.com/bborchers/ha-addons-chrony/commit/5064a68c4fb68f18ba6f5f65d624946a8db69748))
+
+
 ## [0.7.7](https://github.com/bborchers/ha-addons-chrony/compare/v0.7.6...v0.7.7) (2026-08-04)
 
 
