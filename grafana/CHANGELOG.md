@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.5.9](https://github.com/bborchers/ha-addons-grafana/compare/v0.5.8...v0.5.9) (2026-08-21)
+
+### Bug Fixes
+
+* **deps:** update dependency grafana/grafana to v13.2.0 ([#46](https://github.com/bborchers/ha-addons-grafana/issues/46)) ([a2d3d32](https://github.com/bborchers/ha-addons-grafana/commit/a2d3d3250d44a763d0bf21c25e0a7ce873923c0d))
+* give chore(deps)/chore(ci) commits their own release notes section ([#45](https://github.com/bborchers/ha-addons-grafana/issues/45)) ([b965571](https://github.com/bborchers/ha-addons-grafana/commit/b9655719cd71dbbcecc4c0b678521b20a2251558))
+* install conventional-changelog-conventionalcommits for release-notes-generator ([#47](https://github.com/bborchers/ha-addons-grafana/issues/47)) ([cceae71](https://github.com/bborchers/ha-addons-grafana/commit/cceae71e5fc1227ad64926d427db511c7e3df05b)), closes [#45](https://github.com/bborchers/ha-addons-grafana/issues/45)
+* pin conventional-changelog-conventionalcommits to a compatible major ([#48](https://github.com/bborchers/ha-addons-grafana/issues/48)) ([f19f659](https://github.com/bborchers/ha-addons-grafana/commit/f19f6592c4bfd92ed0df08433b7dc5517143081d))
+
+
 ## [0.5.8](https://github.com/bborchers/ha-addons-grafana/compare/v0.5.7...v0.5.8) (2026-08-11)
 
 
