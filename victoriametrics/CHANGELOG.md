@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.3](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.5.2...v1.5.3) (2026-08-21)
+
+### Bug Fixes
+
+* give chore(deps)/chore(ci) commits their own release notes section ([#11](https://github.com/bborchers/ha-addons-victoriametrics/issues/11)) ([7eedd39](https://github.com/bborchers/ha-addons-victoriametrics/commit/7eedd39f6cc86d4584236a659d43c25cb58a1a24))
+* install a compatible conventional-changelog-conventionalcommits version ([#12](https://github.com/bborchers/ha-addons-victoriametrics/issues/12)) ([358ce0f](https://github.com/bborchers/ha-addons-victoriametrics/commit/358ce0fc92e53d2830e1fb5e513cd104a2e25e5c)), closes [#11](https://github.com/bborchers/ha-addons-victoriametrics/issues/11) [47/#48](https://github.com/47/ha-addons-victoriametrics/issues/48)
+
+
 ## [1.5.2](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.5.1...v1.5.2) (2026-08-20)
 
 
