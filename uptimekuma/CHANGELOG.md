@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.10](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.9...v0.5.10) (2026-08-21)
+
+### Bug Fixes
+
+* install a compatible conventional-changelog-conventionalcommits version ([#29](https://github.com/bborchers/ha-addons-uptimekuma/issues/29)) ([515f558](https://github.com/bborchers/ha-addons-uptimekuma/commit/515f558a9adcd25c7df5aa541f790d6fad94fba4)), closes [#28](https://github.com/bborchers/ha-addons-uptimekuma/issues/28) [#28](https://github.com/bborchers/ha-addons-uptimekuma/issues/28)
+* restore per-type release notes for chore(deps)/chore(ci) commits ([#28](https://github.com/bborchers/ha-addons-uptimekuma/issues/28)) ([80f7156](https://github.com/bborchers/ha-addons-uptimekuma/commit/80f7156c1d0d7e139f0770efc7d54a23ccc631e8)), closes [#19](https://github.com/bborchers/ha-addons-uptimekuma/issues/19) [#21](https://github.com/bborchers/ha-addons-uptimekuma/issues/21)
+
+
 ## [0.5.9](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.8...v0.5.9) (2026-08-20)
 
 

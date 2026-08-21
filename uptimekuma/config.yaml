@@ -1,5 +1,5 @@
 name: "Uptime Kuma"
-version: "0.5.9"
+version: "0.5.10"
 slug: "uptimekuma"
 description: "Self-hosted uptime monitoring with a web interface"
 url: "https://github.com/bborchers/ha-addons-uptimekuma/tree/main/uptimekuma"
