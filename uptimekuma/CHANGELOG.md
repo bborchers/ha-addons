@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.12](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.11...v0.5.12) (2026-08-31)
+
+### Dependency Updates
+
+* **deps:** update dependency apprise to v1.13.1 ([#32](https://github.com/bborchers/ha-addons-uptimekuma/issues/32)) ([720164a](https://github.com/bborchers/ha-addons-uptimekuma/commit/720164a61089bb49c6ed7964b9e7919f9cc3dd63))
+
+
 ## [0.5.11](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.10...v0.5.11) (2026-08-25)
 
 ### Dependency Updates
