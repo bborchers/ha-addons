@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.9](https://github.com/bborchers/ha-addons-chrony/compare/v0.7.8...v0.7.9) (2026-09-03)
+
+### Dependency Updates
+
+* **deps:** update hassio-addons base image to v21.0.4 ([#30](https://github.com/bborchers/ha-addons-chrony/issues/30)) ([1e26d0c](https://github.com/bborchers/ha-addons-chrony/commit/1e26d0ca3f90dc8c8b780aa55f9d4e0db29703b5))
+
+
 ## [0.7.8](https://github.com/bborchers/ha-addons-chrony/compare/v0.7.7...v0.7.8) (2026-08-21)
 
 ### Bug Fixes
