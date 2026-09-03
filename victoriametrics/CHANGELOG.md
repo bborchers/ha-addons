@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.4](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.5.3...v1.5.4) (2026-09-03)
+
+### Dependency Updates
+
+* **deps:** update hassio-addons base image to v21.0.4 ([#14](https://github.com/bborchers/ha-addons-victoriametrics/issues/14)) ([0974f26](https://github.com/bborchers/ha-addons-victoriametrics/commit/0974f26dde4188b06b20cbec815f079d225428eb))
+
+
 ## [1.5.3](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.5.2...v1.5.3) (2026-08-21)
 
 ### Bug Fixes
