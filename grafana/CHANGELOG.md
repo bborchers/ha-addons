@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.10](https://github.com/bborchers/ha-addons-grafana/compare/v0.5.9...v0.5.10) (2026-09-03)
+
+### Dependency Updates
+
+* **deps:** update hassio-addons base image to v21.0.4 ([#51](https://github.com/bborchers/ha-addons-grafana/issues/51)) ([774f5cf](https://github.com/bborchers/ha-addons-grafana/commit/774f5cf29fdd76c82c5c1bb6b3c6df397d675eda))
+
+
 ## [0.5.9](https://github.com/bborchers/ha-addons-grafana/compare/v0.5.8...v0.5.9) (2026-08-21)
 
 ### Bug Fixes
