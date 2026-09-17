@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.15](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.14...v0.5.15) (2026-09-17)
+
+### Dependency Updates
+
+* **deps:** update dependency louislam/uptime-kuma to v2.5.5 ([#35](https://github.com/bborchers/ha-addons-uptimekuma/issues/35)) ([ef3a0ae](https://github.com/bborchers/ha-addons-uptimekuma/commit/ef3a0ae4513b12606df790f39ed7bf24e065ad63))
+
+
 ## [0.5.14](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.13...v0.5.14) (2026-09-17)
 
 ### Dependency Updates
