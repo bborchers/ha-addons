@@ -1,5 +1,5 @@
 name: "VictoriaMetrics"
-version: "1.5.8"
+version: "1.6.0"
 slug: "victoriametrics"
 description: "VictoriaMetrics single-node time-series database"
 url: "https://github.com/bborchers/ha-addons-victoriametrics/tree/main/victoriametrics"
@@ -11,6 +11,8 @@ init: false
 ingress: true
 ingress_port: 8429
 ingress_entry: /vmui
+panel_icon: mdi:database-clock
+panel_title: VictoriaMetrics
 ports:
   8428/tcp: 8428
 ports_description:

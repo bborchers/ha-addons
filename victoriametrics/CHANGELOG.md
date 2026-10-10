@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.5.8...v1.6.0) (2026-10-10)
+
+### Features
+
+* show add-on in the Home Assistant sidebar ([#19](https://github.com/bborchers/ha-addons-victoriametrics/issues/19)) ([09e9c2e](https://github.com/bborchers/ha-addons-victoriametrics/commit/09e9c2ebce7208b68af91bdf2a46450b24ebc660))
+
+
 ## [1.5.8](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.5.7...v1.5.8) (2026-10-02)
 
 ### Dependency Updates
