@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/bborchers/ha-addons-grafana/compare/v0.5.14...v0.6.0) (2026-10-10)
+
+### Features
+
+* add Home Assistant ingress and sidebar entry ([#55](https://github.com/bborchers/ha-addons-grafana/issues/55)) ([00cbc63](https://github.com/bborchers/ha-addons-grafana/commit/00cbc63a8e669527008ad13de81a7ba5b83f0486))
+
+
 ## [0.5.14](https://github.com/bborchers/ha-addons-grafana/compare/v0.5.13...v0.5.14) (2026-10-02)
 
 ### Dependency Updates

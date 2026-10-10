@@ -37,9 +37,13 @@ Password for the initial Grafana administrator account. **Should be changed afte
 
 If enabled (`true`), users can access Grafana with read permissions without logging in. Default: `false`.
 
+### Ingress
+
+Grafana is available in the Home Assistant sidebar via ingress. By default `GF_SERVER_ROOT_URL` is set to the ingress path, so links are generated for ingress access; opening Grafana directly on port 3000 then redirects to the ingress path. To use Grafana directly (or behind a reverse proxy), set `root_url` explicitly. Ingress requires plain HTTP, so it does not work while `ssl` is enabled.
+
 ### Option: `root_url`
 
-Sets `GF_SERVER_ROOT_URL`. The full URL used to access Grafana from a browser, e.g. `https://grafana.example.com/` or `https://homeassistant.local:3000/`. Useful when Grafana is reachable through a reverse proxy or a different hostname than the default. Optional, not set by default.
+Overrides the ingress-based `GF_SERVER_ROOT_URL`. The full URL used to access Grafana from a browser, e.g. `https://grafana.example.com/` or `https://homeassistant.local:3000/`. Useful when Grafana is reachable through a reverse proxy or a different hostname than the default. Optional, not set by default.
 
 ### Option: `domain`
 
