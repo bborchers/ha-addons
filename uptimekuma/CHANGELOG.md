@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.20](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.19...v0.5.20) (2026-10-25)
+
+### Bug Fixes
+
+* bump hassio-addons base image to 21.0.9 ([#40](https://github.com/bborchers/ha-addons-uptimekuma/issues/40)) ([065f909](https://github.com/bborchers/ha-addons-uptimekuma/commit/065f90949ceb1bec5940e23fda3967ed588181f5))
+
+
 ## [0.5.18](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.17...v0.5.18) (2026-10-13)
 
 ### Dependency Updates
