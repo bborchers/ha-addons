@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.6.3](https://github.com/bborchers/ha-addons-grafana/compare/v0.6.2...v0.6.3) (2026-10-30)
+
+### Dependency Updates
+
+* **deps:** update dependency grafana/grafana to v13.3.0 ([#60](https://github.com/bborchers/ha-addons-grafana/issues/60)) ([af89abc](https://github.com/bborchers/ha-addons-grafana/commit/af89abc61351682ddca2f467338a6c5e8c2a5adc))
+
+### CI Updates
+
+* **ci:** update dependency node to v26 ([#59](https://github.com/bborchers/ha-addons-grafana/issues/59)) ([3f7832f](https://github.com/bborchers/ha-addons-grafana/commit/3f7832f8404d0c4ef0e6f7d7d8bf23869ae5db26))
+
+
 ## [0.6.2](https://github.com/bborchers/ha-addons-grafana/compare/v0.6.1...v0.6.2) (2026-10-25)
 
 ### Dependency Updates
