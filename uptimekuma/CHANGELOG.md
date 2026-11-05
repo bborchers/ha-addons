@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.24](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.23...v0.5.24) (2026-11-05)
+
+### Dependency Updates
+
+* **deps:** update dependency paho-mqtt to v2.2.0 ([#46](https://github.com/bborchers/ha-addons-uptimekuma/issues/46)) ([57cc793](https://github.com/bborchers/ha-addons-uptimekuma/commit/57cc7934bb40413cda23a38d247c903bc4ec8d9c))
+
+
 ## [0.5.23](https://github.com/bborchers/ha-addons-uptimekuma/compare/v0.5.22...v0.5.23) (2026-11-04)
 
 ### Dependency Updates
