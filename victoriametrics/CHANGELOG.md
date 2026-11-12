@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.5](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.6.4...v1.6.5) (2026-11-12)
+
+### Dependency Updates
+
+* **deps:** update dependency victoriametrics/victoriametrics to v1.156.0 ([#26](https://github.com/bborchers/ha-addons-victoriametrics/issues/26)) ([2305ba2](https://github.com/bborchers/ha-addons-victoriametrics/commit/2305ba2c2e0f251e466cc2670cf5e692582252d2))
+
+
 ## [1.6.4](https://github.com/bborchers/ha-addons-victoriametrics/compare/v1.6.3...v1.6.4) (2026-10-29)
 
 ### Dependency Updates
